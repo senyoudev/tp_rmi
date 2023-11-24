@@ -11,6 +11,7 @@ import java.util.List;
 
 public class LIbraryImpl implements Library {
     Connection connection;
+    static int numOfBooks = 0;
 
     public LIbraryImpl() {
         try {
@@ -22,13 +23,14 @@ public class LIbraryImpl implements Library {
 
     @Override
     public void ajouterLivre(Book livre) {
-        try (PreparedStatement statement = connection.prepareStatement("INSERT INTO livres (isbn, titre, auteur, editeur, disponible, emplacement) VALUES (?, ?, ?, ?, ?, ?)")) {
-            statement.setString(1, livre.getISBN());
-            statement.setString(2, livre.getTitle());
-            statement.setString(3, livre.getAuthr());
-            statement.setString(4, livre.getPublisher());
-            statement.setBoolean(5, livre.getDisponible());
-            statement.setString(6, livre.getBorrower());
+        try (PreparedStatement statement = connection.prepareStatement("INSERT INTO livres (id,isbn, titre, auteur, editeur, disponible, emplacement) VALUES (?,?, ?, ?, ?, ?, ?)")) {
+            statement.setInt(1, ++numOfBooks);
+            statement.setString(2, livre.getISBN());
+            statement.setString(3, livre.getTitle());
+            statement.setString(4, livre.getAuthr());
+            statement.setString(5, livre.getPublisher());
+            statement.setBoolean(6, livre.getDisponible());
+            statement.setString(7, livre.getBorrower());
 
             statement.executeUpdate();
         } catch (SQLException e) {
