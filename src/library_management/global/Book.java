@@ -1,6 +1,7 @@
 package library_management.global;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.Objects;
 
 public class Book implements Serializable {
@@ -10,6 +11,10 @@ public class Book implements Serializable {
     String publisher;
     Boolean disponible = true;
     String borrower;
+
+    private Date dateRetourPrevue;
+    private int nombreProlongations;
+
 
     public Book() {
 
@@ -25,7 +30,20 @@ public class Book implements Serializable {
         this.borrower = borrower;
     }
 
-    public String getTitle() {
+    public Date getDateRetourPrevue() {
+        return dateRetourPrevue;
+    }
+
+    public void setDateRetourPrevue(Date dateRetourPrevue) {
+        this.dateRetourPrevue = dateRetourPrevue;
+    }
+    public int getNombreProlongations() {
+        return nombreProlongations;
+    }
+
+    public void setNombreProlongations(int nombreProlongations) {
+        this.nombreProlongations = nombreProlongations;
+    }    public String getTitle() {
         return title;
     }
 

@@ -1,16 +1,21 @@
 package library_management.global;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Usager {
+public class Usager implements Serializable {
     String nom;
     String categorie;
     String adresse;
     List<Book> livresEmpruntes = new ArrayList<>();
     Date dateRetourPenalite;
+
+    public Usager() {
+        // Default constructor with no parameters
+    }
 
     public Usager(String nom, String categorie, String adresse, List<Book> livresEmpruntes, Date dateRetourPenalite) {
         this.nom = nom;
@@ -104,4 +109,7 @@ public class Usager {
             System.out.println("Vous n'avez pas emprunté ce livre.");
         }
     }
+
+
+
 }
